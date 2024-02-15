@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    matches()
+    function matches()
+    {
+        return new Promise((resolve, reject)=>{
+
+            axios.get("https://v3.football.api-sports.io/fixtures/", 
+            {
+                params: {
+                    league: '301',
+                    season: '2023',
+                    round: `Regular Season - 12`,
+                    timezone: 'Asia/Dubai',
+                    // date: "2024-02-12"
+                },
+                headers: {
+                    "x-rapidapi-host" : "v3.football.api-sports.io",
+                    "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                }
+            })
+            .then(response =>{
+                console.log(response)
+                const matches = response.data.response
+                let objectArray = []
+                let object = {}
+
+                let newData = []
+                for(match of matches){
+                    newData.push(match)
+                }
+                newData.sort((a, b) =>{
+                    let dataA = new Date(a.fixture.date)
+                    let dataB = new Date(b.fixture.date)
+                    return dataA - dataB
+                });
+                console.log(newData)
+                // for(match of matches){
+                    // object = {
+                    //     date:
+                    // }
+                // }
+                // let days = []
+                
+                // for (dataDay of matches)
+                // {
+                //     let dateOfMatch = dataDay.fixture.date
+                //     const date = new Date(dateOfMatch)
+                //     // console.log(date)
+                //     const newDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
+                    
+                //     if(!days.includes(newDate)){
+                //         days.push(newDate)
+                //     }
+                // }
+                // days.sort((a, b) =>{
+                //     let dataA = new Date(a)
+                //     let dataB = new Date(b)
+                //     return dataA - dataB
+                // });
+                // console.log(days)
+
+                // for(day of days){
+                //     for(match of matches){
+                //         let test = match.fixture.date
+                //         const date = new Date(test)
+                //             // console.log(date)
+                //         const newTest = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
+                //         if(day == newTest){
+                //             console.log(match.fixture.venue.name)
+                //         }
+                //     }
+                // }
+            })
+            
+            
+        })
+    }
+</script>
+</html>
