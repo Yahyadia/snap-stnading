@@ -79,15 +79,22 @@
                     
                     if(!days.includes(newDate)){
                         days.push(newDate)
+                        days.sort((a, b) =>{
+                        "use strict"
+                        var reg = /-|:|T|\+/;
+                        let dataA = new Date(a)
+                        let dataB = new Date(b)
+                        return dataA - dataB
+                });
                     }
                 }
-                days.sort((a, b) =>{
-                    "use strict"
-                    var reg = /-|:|T|\+/;
-                    let dataA = new Date(a.split(reg))
-                    let dataB = new Date(b.split(reg))
-                    return dataA - dataB
-                });
+                // days.sort((a, b) =>{
+                //     "use strict"
+                //     var reg = /-|:|T|\+/;
+                //     let dataA = new Date(days.a.split(reg))
+                //     let dataB = new Date(days.b.split(reg))
+                //     return dataA - dataB
+                // });
                 console.log(days)
                 // ============================================ 
                 let newData = []
