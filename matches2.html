@@ -69,6 +69,7 @@
                 // ============================================ DATES ARRAY
                 let days = []
                 
+                console.log(days)
                 for (dataDay of matches)
                 {
                     let dateOfMatch = dataDay.fixture.date
@@ -82,8 +83,9 @@
                 }
                 days.sort((a, b) =>{
                     "use strict"
-                    let dataA = new Date(a)
-                    let dataB = new Date(b)
+                    var reg = /-|:|T|\+/;
+                    let dataA = new Date(a.split(reg))
+                    let dataB = new Date(b.split(reg))
                     return dataA - dataB
                 });
                 console.log(days)

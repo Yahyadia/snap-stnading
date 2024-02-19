@@ -11,7 +11,7 @@ function btayehLogo(){
 function changeTeamsNamesToArabic(){
     const teams = document.querySelectorAll(".team")
     for(team of teams){
-                console.log(team.innerHTML)
+                // console.log(team.innerHTML)
                 if(team.innerHTML == "Shabab Al Ahli Dubai"){
                     team.innerHTML = "شباب الأهلي"
                 }
