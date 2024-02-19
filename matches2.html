@@ -69,7 +69,6 @@
                 // ============================================ DATES ARRAY
                 let days = []
                 
-                console.log(days)
                 for (dataDay of matches)
                 {
                     let dateOfMatch = dataDay.fixture.date
@@ -79,24 +78,15 @@
                     
                     if(!days.includes(newDate)){
                         days.push(newDate)
-                        days.sort((a, b) =>{
-                        "use strict"
-                        var reg = /-|:|T|\+/;
-                        let dataA = new Date(a)
-                        let dataB = new Date(b)
-                        return dataA - dataB
-                });
                     }
                 }
-                // days.sort((a, b) =>{
-                //     "use strict"
-                //     var reg = /-|:|T|\+/;
-                //     let dataA = new Date(days.a.split(reg))
-                //     let dataB = new Date(days.b.split(reg))
-                //     return dataA - dataB
-                // });
-                console.log(days)
-                // ============================================ 
+                let newDays = days.sort((a, b) =>{
+                    let dataA = new Date(a)
+                    let dataB = new Date(b)
+                    return dataA - dataB
+                });
+                console.log(newDays)
+                // ============================================ SORTED DATA
                 let newData = []
                 for(match of matches){
                     newData.push(match)
@@ -107,11 +97,11 @@
                     return dataA - dataB
                 });
                 console.log(newData)
-                // ============================================ SORTED DATA
+                // ============================================ 
                 document.getElementById("matches").innerHTML = ""
                 let content = ""
                 
-                resolve([days, newData])
+                resolve([newDays, newData])
                 
                         })
                     })
@@ -122,10 +112,10 @@
 
     
     matches()
-    .then(([days, newData])=>
+    .then(([newDays, newData])=>
     {       
-        console.log([days, newData])
-        for(day of days)
+        console.log([newDays, newData])
+        for(day of newDays)
                 {   
                     console.log(newData[newData.length- 1].fixture)
                     if(newData[0].fixture.status.long !== "Match Finished"){
